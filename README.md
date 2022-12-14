@@ -14,9 +14,10 @@ to it in our database.
 
 ***
 
-Used packages:
+Used packages/classes/modules/...:
+Levenshtein  'can be installed by running "pip install levenshtein" via terminal'
 
-
+from collections - .defaultdict()
 
 ***
 TBC
