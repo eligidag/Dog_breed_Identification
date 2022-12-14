@@ -1,3 +1,3 @@
-a = 'This is a dog breed identifier'
-b = "test test test"
-print(f"{a}...{b}")
+dog_breeds = r'C:\Users\eligi\Desktop\pythonProject\data\dog_breeds.fa'
+target_seq = r'C:\Users\eligi\Desktop\pythonProject\data\mystery.fa'
+
