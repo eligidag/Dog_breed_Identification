@@ -1,9 +1,11 @@
 def test_read_fasta():
-    data = read_fasta("sample.fa")
-    assert data.keys() == [">Sample seq 1", ">Sample seq 2",">Sample seq 3",">Sample seq 4"]
-    assert data[">Sample seq 1"] == "ATGCTAGAGAAAAAAA"
-test_read_fasta()
+    data = read_fasta("test_data/simple.fasta")
+    assert len(data) == 2, f"Expected 2 sequences, got {len(data)}"
+    assert ">sequence1" in data, "Expected key '>sequence1' not found in data"
+    assert data[">sequence1"] == "ATGCATGC", f"Unexpected sequence for key '>sequence1': {data['>sequence1']}"
+    assert ">sequence2" in data, "Expected key '>sequence2' not found in data"
+    assert data[">sequence2"] == "GCATGCAT", f"Unexpected sequence for key '>sequence2': {data['>sequence2']}"
 
 
-def test_find_most_similar():
-    target_seq_dict = {'Mystery':"ATGCATGCATGCATGC"}
+    data = read_fasta("test_data/empty.fasta")
+    assert len(data) == 0, f"Expected 0 sequences, got {len(data)}"
