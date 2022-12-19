@@ -1,8 +1,9 @@
+from collections import defaultdict
+from Levenshtein import distance
+
 dog_breeds = r'C:\Users\eligi\Desktop\pythonProject\data\dog_breeds.fa'
 target_seq = r'C:\Users\eligi\Desktop\pythonProject\data\mystery.fa'
 
-from collections import defaultdict
-from Levenshtein import distance
 
 def read_fasta(filename):
     """Read a FASTA file and return a dictionary with the keys and values."""
@@ -12,10 +13,11 @@ def read_fasta(filename):
             if line[0] == '>':
                 key = line.strip('\n')
             else:
-                data[key] +=line.strip("\n")
+                data[key] += line.strip("\n")
     return data
 
-def find_most_similar(target_seq_dict, dog_breeds_dict):
+
+def find_most_similar(target_seq_dict, dog_breeds_DB):
     """ Find the most similar sequence in the dog breeds dictionary to the target sequence,
      using the Levenshtein distance"""
 
@@ -38,10 +40,15 @@ def find_most_similar(target_seq_dict, dog_breeds_dict):
                 most_similar = breed_key
     return most_similar
 
-#read the FASTA files into dictionaries
+
+# read the FASTA files into dictionaries
 dog_breeds_DB = read_fasta(dog_breeds)
 target_seq_dict = read_fasta(target_seq)
 
-#find the most similar sequence
-most_similar = find_most_similar(target_seq_dict,dog_breeds_DB)
-print(most_similar)
+# find the most similar sequence
+most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
+#print(most_similar)
+
+def find_probability(target_seq_dict, dog_breeds_DB, p_value):
+    """Finds a probability of a sequence being in the database, based on a given p-value"""
+
