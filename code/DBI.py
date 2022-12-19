@@ -45,22 +45,7 @@ def find_most_similar(target_seq_dict, dog_breeds_DB):
 
     return most_similar
 
-def find_similarity_probabilities(target_seq_dict, dog_breeds_DB):
-    probabilities = {}
-    distances = []
-    #repurposed code from find_most_similar()
-    for target_key, target_value in target_seq_dict.items():
-        for breed_key, breed_value in dog_breeds_DB.items():
-            dist = distance(target_value, breed_value)
 
-    #Levenshtein distance between mystery/target sequence and all the sequences in the db
-            distances.append(dist)
-    #p-value for each calculated distance
-    _, p_values = scipy.stats.kstest(distances, 'expon')
-    if isinstance(p_values, float):
-        p_values = [p_values]
-    probabilities = {key: 1/p_value if p_value > 0 else 0 for key, p_value in zip(dog_breeds_DB.keys(),p_values)}
-    return probabilities
 
 # read the FASTA files into dictionaries
 dog_breeds_DB = read_fasta(dog_breeds)
@@ -68,9 +53,8 @@ target_seq_dict = read_fasta(target_seq)
 
 # find the most similar sequence
 most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
-probabilities = find_similarity_probabilities(target_seq_dict, dog_breeds_DB)
 
-print(probabilities)
+print(most_similar)
 
 
 
