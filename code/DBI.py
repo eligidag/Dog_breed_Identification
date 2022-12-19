@@ -59,7 +59,7 @@ def find_similarity_probabilities(target_seq_dict, dog_breeds_DB):
     _, p_values = scipy.stats.kstest(distances, 'expon')
     if isinstance(p_values, float):
         p_values = [p_values]
-    probabilities = {key: 1/p_value for key, p_value in zip(dog_breeds_DB.keys(), p_values)}
+    probabilities = {key: 1/p_value if p_value > 0 else 0 for key, p_value in zip(dog_breeds_DB.keys(),p_values)}
     return probabilities
 
 # read the FASTA files into dictionaries
@@ -71,7 +71,7 @@ most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
 probabilities = find_similarity_probabilities(target_seq_dict, dog_breeds_DB)
 
 print(probabilities)
-#print(most_similar)
+print(most_similar)
 
 
 
