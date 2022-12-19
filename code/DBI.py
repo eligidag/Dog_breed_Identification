@@ -1,6 +1,6 @@
 from collections import defaultdict
 from Levenshtein import distance
-import scipy.stats
+from scipy.stats import chisquare
 
 
 dog_breeds = r'C:\Users\eligi\Desktop\pythonProject\data\dog_breeds.fa'
@@ -29,6 +29,8 @@ def find_most_similar(target_seq_dict, dog_breeds_DB):
     min_distance = float('inf')
     # variable to store the key of the most similar sequence
     most_similar = None
+    #variable to store the length difference between the most similar sequence and the target sequence
+    length_diff = 0
     # iteration over the keys and values in the target_seq_dict
     for target_key, target_value in target_seq_dict.items():
         # iteration over the keys and values in the dog_breeds_DB
@@ -42,8 +44,11 @@ def find_most_similar(target_seq_dict, dog_breeds_DB):
                 min_distance = dist
                 # stores the key value pair that is currently the most similar to the target seq
                 most_similar = breed_key
+                #store the length difference between the most similar sequence and the target seq
+                length_diff = abs(len(target_value)) - len(breed_value)
 
-    return most_similar
+    return most_similar, length_diff
+
 
 
 
@@ -52,9 +57,9 @@ dog_breeds_DB = read_fasta(dog_breeds)
 target_seq_dict = read_fasta(target_seq)
 
 # find the most similar sequence
-most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
-
-print(most_similar)
+most_similar, length_diff = find_most_similar(target_seq_dict, dog_breeds_DB)
+print(f"Information about the most similar breed: {most_similar}")
+print(f"The length difference is: {length_diff}")
 
 
 
