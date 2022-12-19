@@ -47,8 +47,36 @@ target_seq_dict = read_fasta(target_seq)
 
 # find the most similar sequence
 most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
-#print(most_similar)
+
+
+# print(most_similar)
 
 def find_probability(target_seq_dict, dog_breeds_DB, p_value):
     """Finds a probability of a sequence being in the database, based on a given p-value"""
+
+    #Find the most similar sequence in the database
+    most_similar = find_most_similar(target_seq_dict, dog_breeds_DB)
+
+    #Find the total number of sequences in the database
+    num_sequences = len(dog_breeds_DB)
+
+    #counter variable to be used to keep track of the number of sequences that have a Levenshtein distance
+    #lower or equal to the p-value
+    count = 0
+
+    #for loop to iterate over the sequences in the database and calculate the distance between
+    #the target sequence and the current sequence
+    for breed_key, breed_value in dog_breeds_DB.items():
+        dist = distance(target_seq_dict[most_similar], breed_value)
+
+        #if the distance is less than or equal to the p-value, increase the counter.
+        if dist <= p_value:
+            count += 1
+
+        #probability calculation
+        probability = count / num_sequences
+
+        return probability
+
+
 
