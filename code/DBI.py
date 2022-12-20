@@ -48,16 +48,27 @@ def find_most_similar(target_seq_dict, dog_breeds_DB):
 
     return (breed_name, min_distance)
 
+def calculate_similarity(target_seq_dict, most_similar_breed, length_difference):
+
+    target_seq_length = len(next(iter(target_seq_dict.values())))
+
+    #length of the most similar sequence
+    most_similar_length = len(dog_breeds_DB[most_similar_breed])
+
+    #percentage of similarity between target seq and most similar seq
+    similarity = (100 - (((length_difference / target_seq_length)) * 100))
+
+    return similarity
+
 # read the FASTA files into dictionaries
 dog_breeds_DB = read_fasta(dog_breeds)
 target_seq_dict = read_fasta(target_seq)
-
 # find the most similar breed and the length difference
+
 most_similar_breed, length_difference = find_most_similar(target_seq_dict, dog_breeds_DB)
+similarity = calculate_similarity(target_seq_dict, most_similar_breed, length_difference)
+
 
 print(f"The mystery sequence is the most similar to the one of {most_similar_breed}")
 print(f"With the sequence length difference of: {length_difference}")
-
-
-
-
+print(f"The mystery sequence is {similarity:.2f}% similar to the one of {most_similar_breed}")
