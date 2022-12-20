@@ -41,7 +41,7 @@ def find_most_similar(target_seq_dict, dog_breeds_DB):
 
     return (breed_name, min_distance)
 
-def calculate_similarity(target_seq_dict, most_similar_breed, length_difference):
+def calculate_similarity(target_seq_dict, most_similar_breed, length_difference, dog_breeds_DB):
 
     target_seq_length = len(next(iter(target_seq_dict.values())))
 

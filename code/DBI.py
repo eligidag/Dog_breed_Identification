@@ -1,6 +1,6 @@
 from collections import defaultdict
 from Levenshtein import distance
-from scipy.stats import chisquare
+
 
 
 dog_breeds = r'C:\Users\eligi\Desktop\pythonProject\data\dog_breeds.fa'
