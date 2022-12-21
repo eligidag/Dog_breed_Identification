@@ -31,4 +31,5 @@ It includes a number of classes for reading and writing data in various formats,
 os is a built-in Python package that provides functions for interacting with the operating system.
 It includes a number of utilities for working with files and directories, as well as functions for controlling processes and interacting with the environment.
 ***
-To run the Dog breed identifier:
+To run the Dog breed identifier, once uploaded, type this in the terminal of your chosen python interpreter:
+python DBI.py
