@@ -15,3 +15,18 @@ class TestFunctions(unittest.TestCase):
             '>breed=african_hunting_dog': 'ATCGATCGATCG',
             '>breed=airedale': 'ATCGATCGATCGATCG'
         })
+    def test_find_most_similar(self):
+        #dictionary of breeds for testing
+        dog_breeds_DB = {
+            '>breed=affenpinscher': 'ATCGATCG',
+            '>breed=african_hunting_dog': 'ATCGATCGATCG',
+            '>breed=airedale': 'ATCGATCGATCGATCG'
+        }
+        #dictionary of target sequence
+        target_seq_dict = {
+            '>mystery': 'ATCGATCG'
+        }
+        #function testing with the test data
+        result = find_most_similar(target_seq_dict,dog_breeds_DB)
+        #check if it is whats expected
+        self.assertEqual(result, ('affenpinscher', 0))
