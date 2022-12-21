@@ -14,10 +14,21 @@ to it in our database.
 
 ***
 
-Used packages/classes/modules/...:
-Levenshtein  'can be installed by running "pip install levenshtein" via terminal'
+Used packages:
+collections is a built-in Python package that provides specialized container data types.
+It includes defaultdict, which is a subclass of the built-in dict class that provides a default value for a nonexistent key.
 
-from collections - .defaultdict()
+Levenshtein is a third-party Python package that provides functions for calculating the Levenshtein distance between two strings.
+The Levenshtein distance is a measure of the similarity between two strings,
+based on the minimum number of single-character edits (insertions, deletions, or substitutions) required to transform one string into the other.
 
+unittest is a built-in Python package that provides a set of tools for testing Python code.
+It includes a testing framework and a number of utilities for constructing and running tests.
+
+io is a built-in Python package that provides functions for working with input and output streams.
+It includes a number of classes for reading and writing data in various formats, including text and binary data.
+
+os is a built-in Python package that provides functions for interacting with the operating system.
+It includes a number of utilities for working with files and directories, as well as functions for controlling processes and interacting with the environment.
 ***
-TBC
+To run the Dog breed identifier:
