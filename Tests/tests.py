@@ -1,4 +1,5 @@
 import unittest
+import io
 from functions.sequence_functions import read_fasta,find_most_similar, calculate_similarity
 
 class TestFunctions(unittest.TestCase):
@@ -30,3 +31,23 @@ class TestFunctions(unittest.TestCase):
         result = find_most_similar(target_seq_dict,dog_breeds_DB)
         #check if it is whats expected
         self.assertEqual(result, ('affenpinscher', 0))
+
+    def test_calculate_similarity(self):
+        #dictionary of breeds for testing
+        dog_breeds_DB = {
+            '>breed=affenpinscher': 'ATCGATCG',
+            '>breed=african_hunting_dog': 'ATCGATCGATCG',
+            '>breed=airedale': 'ATCGATCGATCGATCG'
+        }
+        #dictionary of target sequence
+        target_seq_dict = {
+            '>mystery': 'ATCGATCG'
+        }
+        #find the most similar breed and the length difference
+        most_similar_breed, length_difference = find_most_similar(target_seq_dict, dog_breeds_DB)
+        #test calculate_similarity()
+        result = calculate_similarity(target_seq_dict, most_similar_breed, length_difference)
+        #check if the results are as expected
+        self.assertEqual(result, 100)
+
+unittest.main()
